@@ -6,7 +6,7 @@
 
 
 
-void* align_malloc(void *ptr,int size,int n);
+void* align_malloc(int size,int n);
 
 void aligned_free(void* ptr);
 
@@ -16,7 +16,7 @@ int main()
 
 
 
-	char* ptr = (char*)align_malloc(ptr,1000,4);
+	char* ptr = (char*)align_malloc(1000,4);
 	if((int)ptr % 4 == 0){
 		printf("%d\n",ptr);
 	}
@@ -26,9 +26,9 @@ int main()
 }
 
 
-void* align_malloc(void *ptr,int size,int n){
+void* align_malloc(int size,int n){
 
-
+	void* ptr;
 	while(1){
 		ptr = malloc(sizeof(void) * size);
 		if((int)ptr % n != 0){
